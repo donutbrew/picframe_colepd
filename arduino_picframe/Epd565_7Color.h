@@ -20,6 +20,7 @@ public:
   void sleep();
 
 private:
+
   void sendCommand(uint8_t cmd);
   void sendData(const uint8_t *data, size_t len);
   void hardwareReset();
