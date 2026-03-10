@@ -20,13 +20,6 @@ public:
   void sleep();
 
 private:
-  struct InitCmd {
-    uint8_t cmd;
-    uint8_t data[16];
-    uint8_t dataBytes;
-  };
-
-  static constexpr uint8_t kInitDataWait = 0x80;
 
   void sendCommand(uint8_t cmd);
   void sendData(const uint8_t *data, size_t len);

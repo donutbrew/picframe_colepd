@@ -1,8 +1,17 @@
 #include "Epd565_7Color.h"
 
 namespace {
+struct EpdInitCmd {
+  uint8_t cmd;
+  uint8_t data[16];
+  uint8_t dataBytes;
+};
+
+constexpr uint8_t kInitDataWait = 0x80;
+
 // Preserved from original firmware/main/epd.c init table.
-const Epd565_7Color::InitCmd kInitCmds[] = {
+const EpdInitCmd kInitCmds[] = {
+
     {0x00, {0xef, 0x08}, 2},
     {0x01, {0x37, 0x00, 0x23, 0x23}, 4},
     {0x03, {0x00}, 1},
@@ -12,7 +21,8 @@ const Epd565_7Color::InitCmd kInitCmds[] = {
     {0x50, {0x37}, 1},
     {0x60, {0x22}, 1},
     {0x61, {0x02, 0x58, 0x01, 0xC0}, 4},
-    {0xE3, {0xAA}, static_cast<uint8_t>(1 | Epd565_7Color::kInitDataWait)},
+    {0xE3, {0xAA}, static_cast<uint8_t>(1 | kInitDataWait)},
+
     {0x50, {0x37}, 1},
     {0x00, {0x00}, 0xFF},
 };
